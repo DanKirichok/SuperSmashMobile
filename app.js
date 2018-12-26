@@ -10,6 +10,9 @@ var users = require('./routes/users');
 
 var app = express();
 
+var http = require("http").Server(app);
+var io = require("./routes/sockets").listen(http);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -25,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
-const port = 3000;
+const port = 4000;
 const url = "127.0.0.1";
 
 // catch 404 and forward to error handler
@@ -59,7 +62,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(3000, function() {
+http.listen(port, url, function() {
   console.log('Listening on http://' + url + ":" + port);
 })
 
