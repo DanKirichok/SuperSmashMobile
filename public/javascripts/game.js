@@ -82,10 +82,14 @@ class CreateLobby extends Phaser.Scene {
 		
 	}
 	
+	
+	
 	createRoomNumberText()
 	{
+		socket.emit("getRoomNumber")
 		var roomNumberText = this.add.text(game.config.width*.5, game.config.height*.1, "Room Number", {font: "96px " + font, fill: "#000000"});		
 		roomNumberText.setOrigin(.5);
+		socket.emit("getRoomNumber")
 	}
 	
 	createBackText()
